@@ -2,24 +2,24 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
- 
-    .cabecalho {
+
+    .header {
         background: #e2dfdf;
         color: #1a1a1a;
         font-weight: 500;
         font-size: 16px;
         padding: 8px;
-        // border-top-right-radius: 8px;
     }
  
     .section-inputs {
         padding: 16px;
     }
  
-    .dados-pessoais {
+    .personal-data {
         display: flex;
         flex-direction: column;
         min-width: 400px;
+        background-color: #f7f3f3;
  
         .two-column {
             display: grid;
@@ -41,13 +41,13 @@
             font-size: 0.75em;
           }
     }
-    .seu-ingresso { 
+    .your-tickets { 
         display: flex;
         flex-direction: column;
         background: #e2dfdf;
         min-width: 600px;
  
-        .text-rodape {
+        .footnote-text {
             display: flex;
             justify-content: space-between;
         
@@ -81,8 +81,12 @@
                     grid:1;
                     background: #411b1b;
                 }
-     
             }
+        }
+        .submit-button {
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
         }
     }
 }

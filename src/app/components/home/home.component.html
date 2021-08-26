@@ -3,9 +3,8 @@
     <h1>Reserva de Ingressos</h1>
   </div>
   <div class="content-form">
-    <!-- <mat-card> -->
-    <div class="dados-pessoais">
-      <div class="cabecalho">Dados Pessoais</div>
+    <div class="personal-data">
+      <div class="header">Dados Pessoais</div>
 
       <div class="section-inputs">
         <form [formGroup]="profileForm" class="form-container">
@@ -153,22 +152,20 @@
           <mat-form-field appearance="fill">
             <mat-label>Escolha um filme</mat-label>
             <mat-select formControlName="info" matInput="" [disabled]="loadingMovieList">
-              <mat-option *ngFor="let movie of movieList"
-              [value]="movie"> {{ movie.title }} </mat-option>
+              <mat-option *ngFor="let movie of movieList" [value]="movie"> {{ movie.title }} </mat-option>
             </mat-select>
           </mat-form-field>
         </form>
       </div>
     </div>
 
-    <div class="seu-ingresso">
-      <div class="cabecalho">Seu Ingresso</div>
+    <div class="your-tickets">
+      <div class="header">Seu Ingresso</div>
       <div class="section-inputs">
 
         <div class="whatever">
           <div class="item-grid">
-            <img [src]="imageToShow"
-              *ngIf="!loadingMoviePoster" class="movie-poster">
+            <img [src]="imageToShow" *ngIf="!loadingMoviePoster" class="movie-poster">
             <div class="empty-movie-poster" *ngIf="loadingMoviePoster"></div>
           </div>
           <div class="item-grid">
@@ -176,30 +173,36 @@
               Ingresso para o filme {{ selectedMovieTitle }}
             </div>
             <div class="ticket-price">
-              preco: 20 real
+              Preço do Ingresso: R$ 20,00
             </div>
           </div>
         </div>
 
         <div class="line"></div>
 
-        <div class="text-rodape">
+        <div class="footnote-text">
           <span>Seu total</span>
           <span>$$$$$$$</span>
         </div>
-        <div class="text-rodape">
+        <div class="footnote-text">
           <span>Frete</span>
           <span>$$$$$$$</span>
         </div>
-        <div class="total-price">
+        <div class="total-price footnote-text">
           <span>TOTAL</span>
           <span>$$$$$$$</span>
         </div>
+
+        <br>
+        <br>
+        
+        <div class="submit-button">
+          <mat-card-actions>
+            <button (click)="onSubmit()" [disabled]="validateRequiredFields()" mat-raised-button
+              color="primary">Comprar</button>
+          </mat-card-actions>
+        </div>
       </div>
-      <mat-card-actions>
-        <button (click)="onSubmit()" [disabled]="validateRequiredFields()" mat-raised-button color="primary">Comprar</button>
-      </mat-card-actions>
     </div>
-    <!-- </mat-card> -->
   </div>
 </section>
