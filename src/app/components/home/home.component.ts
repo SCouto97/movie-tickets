@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Movie } from 'src/app/public/models/movie';
 import { CepService } from 'src/app/services/cep.service';
 import { MovieService } from 'src/app/services/movie-service.service';
@@ -12,38 +12,38 @@ import { MovieService } from 'src/app/services/movie-service.service';
 export class HomeComponent implements OnInit {
 
   profileForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    cpf: [''],
-    birthDate: [''],
-    email: [''],
-    companionFirstName: [{ value: '', disabled: true }],
-    companionLastName: [{ value: '', disabled: true }],
-    companionCpf: [{ value: '', disabled: true }],
-    companionBirthDate: [{ value: '', disabled: true }],
-    companionEmail: [{ value: '', disabled: true }],
-    cep: [''],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    cpf: ['', Validators.required],
+    birthDate: ['', Validators.required],
+    email: ['', Validators.required],
+    cep: ['', Validators.required],
     address: [],
-    hasAc: [false],
+    hasAc: [ false ],
     movie: ['']
   });
 
+  companionForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    cpf: ['', Validators.required],
+    birthDate: ['', Validators.required],
+    email: ['', Validators.required],
+  });
+
   addressForm = this.fb.group({
-    logradouro: [''],
-    complemento: [''],
-    bairro: [''],
-    localidade: [''],
-    uf: [''],
-    ibge: [''],
-    gia: [''],
-    ddd: [''],
-    siafi: [''],
-    cep: [''],
-    numero: ['']
+    cep: ['', Validators.required],
+    logradouro: ['', Validators.required],
+    uf: ['', Validators.required],
+    localidade: ['', Validators.required],
+    bairro: ['', Validators.required],
+    numero: ['', Validators.required],
+    complemento: ['']
   })
 
   movieForm = this.fb.group({
-    title: ['']
+    title: [''],
+
   })
 
   constructor(private fb: FormBuilder, private cepService: CepService, private movieService: MovieService) { }
@@ -53,17 +53,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.onChanges();
+    this.getMovieList();
   }
 
   public onChanges(): void {
     this.addressForm.valueChanges
       .subscribe(res => {
-        console.log('overloads: ', res)
+        console.log('overloads: ', res);
       });
-  }
-
-  public showCompanion() {
-    console.log("showing companion data");
   }
 
   public onSubmit() {
@@ -72,6 +69,8 @@ export class HomeComponent implements OnInit {
     this.profileForm.patchValue({
       address: this.addressForm.value,
     });
+
+    console.log('movieForm:', this.movieForm.value);
   }
 
   public searchCep() {
@@ -79,8 +78,6 @@ export class HomeComponent implements OnInit {
 
     this.cepService.getAddress()
       .subscribe(res => {
-        console.log(res);
-
         this.addressForm.patchValue({
           logradouro: res.logradouro,
           bairro: res.bairro,
@@ -107,4 +104,11 @@ export class HomeComponent implements OnInit {
       );
     console.log(this.movieList);
   }
+
+  public activeFields() {
+    if (this.profileForm.value.hasAc) {
+      // this.profileForm.controls.companionFirstName.enable();
+    }
+  }
+
 }

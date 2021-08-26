@@ -38,41 +38,44 @@
               </mat-form-field>
             </div>
           </div>
-
+          
           <div class="one-column">
             <mat-form-field>
               <input formControlName="email" matInput="" placeholder="Email">
             </mat-form-field>
           </div>
+          
           <div class="companion-checkbox">
-            <mat-checkbox formControlName="hasAc">Adicionar acompanhante</mat-checkbox>
+            <mat-checkbox formControlName="hasAc" (click)="activeFields()">Adicionar acompanhante</mat-checkbox>
           </div>
-
+        </form>
+          
+        <form [formGroup]="companionForm" class="form-container">
           <div class="companion-section" *ngIf="profileForm.value.hasAc">
             <div class="two-column">
               <div class="item-column">
                 <mat-form-field>
-                  <input formControlName="companionFirstName" matInput="" placeholder="Nome">
+                  <input formControlName="firstName" matInput="" placeholder="Nome">
                 </mat-form-field>
               </div>
 
               <div class="item-column">
                 <mat-form-field>
-                  <input formControlName="companionLastName" matInput="" placeholder="Sobrenome">
+                  <input formControlName="lastName" matInput="" placeholder="Sobrenome">
                 </mat-form-field>
               </div>
             </div>
             <div class="two-column">
               <div class="item-column">
                 <mat-form-field>
-                  <input formControlName="companionCpf" matInput="" placeholder="CPF">
+                  <input formControlName="cpf" matInput="" placeholder="CPF">
                 </mat-form-field>
               </div>
 
               <div class="item-column">
                 <mat-form-field>
                   <mat-label>Data de nascimento</mat-label>
-                  <input formControlName="companionBirthDate" matInput [matDatepicker]="picker">
+                  <input formControlName="birthDate" matInput [matDatepicker]="picker">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -141,16 +144,17 @@
         </form>
 
         <br>
-        
+
         <span>Escolha o filme:</span>
 
         <br>
- 
+
         <form [formGroup]="movieForm">
-          <mat-form-field  appearance="fill">
+          <mat-form-field appearance="fill">
             <mat-label>Filmes</mat-label>
-            <mat-select formControlName="title" matInput="" (click)="getMovieList()">
-              <mat-option *ngFor="let movie of movieList" [value]="movie.title"> {{ movie.title }}</mat-option>
+            <mat-select formControlName="title" matInput="" [disabled]="loadingMovieList">
+              <mat-option *ngFor="let movie of movieList" 
+                [value]="movie.title"> {{ movie.title }}</mat-option>
             </mat-select>
           </mat-form-field>
         </form>

@@ -10,7 +10,8 @@ export const environment = {
       apiBaseUrl: "https://api.themoviedb.org/3/movie/upcoming?",
       apiKeyArg: "api_key=" + movieDbConfig.api_key,
       langArg: "&language=en_US",
-      pageArg: "&page=1"
+      pageArg: "&page=1",
+      apiImageUrl: "https://image.tmdb.org/t/p/original"
   },
   viaCep: {
     apiBaseUrl: "https://viacep.com.br/ws/",
