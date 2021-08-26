@@ -1,0 +1,77 @@
+.content-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+ 
+    .cabecalho {
+        background: #e6e0e0;
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 16px;
+        padding: 8px;
+        // border-top-right-radius: 8px;
+    }
+ 
+    .section-inputs {
+        padding: 16px;
+    }
+ 
+    .dados-pessoais {
+        display: flex;
+        flex-direction: column;
+        min-width: 400px;
+ 
+        .two-column {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            column-gap: 16px;
+            margin-bottom: 8px;
+ 
+            .item-column {
+                grid: 1;
+            }
+        }
+        .one-column {
+            display: grid;
+            column-gap: 16px;
+            margin-bottom: 8px;
+        }
+    }
+    .seu-ingresso { 
+        display: flex;
+        flex-direction: column;
+        background: blue;
+        min-width: 300px;
+ 
+        .text-rodape {
+            display: flex;
+            justify-content: space-between;
+        
+            .total_price { 
+                display: flex;
+                margin: 12px;
+            }
+        }
+ 
+        .line {
+            margin: 8px;
+            border-bottom: 1px solid black;
+        }
+ 
+        .whatever {
+            display: grid;
+            grid-template-columns: auto auto;
+ 
+            .item-grid {
+                grid: 1;
+            }
+ 
+            .square {
+                height: 100px;
+                width: 100px;
+                background: rgb(202, 196, 196);
+            }
+ 
+        }
+    }
+}

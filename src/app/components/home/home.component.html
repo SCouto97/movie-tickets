@@ -1,0 +1,177 @@
+<section>
+  <div class="title">
+    <h1>Formulário</h1>
+  </div>
+  <div class="content-form">
+    <!-- <mat-card> -->
+    <div class="dados-pessoais">
+      <div class="cabecalho">Dados Pessoais</div>
+
+      <div class="section-inputs">
+        <form [formGroup]="profileForm" class="form-container">
+          <div class="two-column">
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="firstName" matInput="" placeholder="Nome">
+              </mat-form-field>
+            </div>
+
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="lastName" matInput="" placeholder="Sobrenome">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="two-column">
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="cpf" matInput="" placeholder="CPF">
+              </mat-form-field>
+            </div>
+
+            <div class="item-column">
+              <mat-form-field>
+                <mat-label>Data de nascimento</mat-label>
+                <input formControlName="birthDate" matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="one-column">
+            <mat-form-field>
+              <input formControlName="email" matInput="" placeholder="Email">
+            </mat-form-field>
+          </div>
+          <div class="companion-checkbox">
+            <mat-checkbox formControlName="hasAc">Adicionar acompanhante</mat-checkbox>
+          </div>
+
+          <div class="companion-section" *ngIf="profileForm.value.hasAc">
+            <div class="two-column">
+              <div class="item-column">
+                <mat-form-field>
+                  <input formControlName="companionFirstName" matInput="" placeholder="Nome">
+                </mat-form-field>
+              </div>
+
+              <div class="item-column">
+                <mat-form-field>
+                  <input formControlName="companionLastName" matInput="" placeholder="Sobrenome">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="two-column">
+              <div class="item-column">
+                <mat-form-field>
+                  <input formControlName="companionCpf" matInput="" placeholder="CPF">
+                </mat-form-field>
+              </div>
+
+              <div class="item-column">
+                <mat-form-field>
+                  <mat-label>Data de nascimento</mat-label>
+                  <input formControlName="companionBirthDate" matInput [matDatepicker]="picker">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="dados-entrega">
+            Dados da Entrega
+          </div>
+
+        </form>
+
+        <br>
+
+        <form [formGroup]="addressForm">
+          <div class="two-column">
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="cep" matInput="" placeholder="CEP" (keyup.enter)="searchCep()">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="two-column">
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="localidade" matInput="" placeholder="Cidade">
+              </mat-form-field>
+            </div>
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="bairro" matInput="" placeholder="Bairro">
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="one-column">
+            <mat-form-field>
+              <input formControlName="logradouro" matInput="" placeholder="Endereco">
+            </mat-form-field>
+          </div>
+
+          <div class="two-column">
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="complemento" matInput="" placeholder="Número">
+              </mat-form-field>
+            </div>
+
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="complemento" matInput="" placeholder="Complemento">
+              </mat-form-field>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+
+      <mat-card-actions>
+        <button (click)="onSubmit()" mat-raised-button color="primary">Save</button>
+      </mat-card-actions>
+    </div>
+
+    <div class="seu-ingresso">
+      <div class="cabecalho">Seu Ingresso</div>
+      <div class="section-inputs">
+
+        <div class="whatever">
+          <div class="item-grid square">
+            LOL
+          </div>
+
+          <div class="item-grid">
+            LOL2222
+          </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="text-rodape">
+          <span>Seu total</span>
+          <span>$$$$$$$</span>
+        </div>
+        <div class="text-rodape">
+          <span>Frete</span>
+          <span>$$$$$$$</span>
+        </div>
+        <div class="total-price">
+          <span>TOTAL</span>
+          <span>$$$$$$$</span>
+        </div>
+      </div>
+    </div>
+    <!-- </mat-card> -->
+  </div>
+</section>
