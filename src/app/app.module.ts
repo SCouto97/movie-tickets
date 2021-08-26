@@ -18,15 +18,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { MovieService } from './services/movie-service.service';
-import { ListMoviesComponent } from './components/list-movies/list-movies.component';
 import { HomeComponent } from './components/home/home.component';
+import { AddressFormComponent } from './components/address-form/address-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListMoviesComponent,
     HomeComponent,
+    AddressFormComponent,
   ],
   imports: [
     BrowserModule,

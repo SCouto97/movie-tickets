@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListMoviesComponent } from './list-movies.component';
+import { AddressFormComponent } from './address-form.component';
 
-describe('ListMoviesComponent', () => {
-  let component: ListMoviesComponent;
-  let fixture: ComponentFixture<ListMoviesComponent>;
+describe('AddressFormComponent', () => {
+  let component: AddressFormComponent;
+  let fixture: ComponentFixture<AddressFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListMoviesComponent ]
+      declarations: [ AddressFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListMoviesComponent);
+    fixture = TestBed.createComponent(AddressFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
