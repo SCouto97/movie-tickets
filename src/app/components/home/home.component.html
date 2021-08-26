@@ -195,10 +195,10 @@
 
         <br>
         <br>
-        
+
         <div class="submit-button">
           <mat-card-actions>
-            <button (click)="onSubmit()" [disabled]="validateRequiredFields()" mat-raised-button
+            <button (click)="onSubmit()" [disabled]="!isFormValid" mat-raised-button
               color="primary">Comprar</button>
           </mat-card-actions>
         </div>

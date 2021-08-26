@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
   public imageUrl: string;
   public imageToShow: any;
   public selectedMovieTitle: string;
+  public isFormValid = false;
   
   ngOnInit() {
     this.onChanges();
@@ -75,10 +76,16 @@ export class HomeComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log('form data is: ', this.profileForm.value);
-    console.log('companion form is: ', this.companionForm.value);
-    console.log('address data is: ', this.addressForm.value)
-    console.log('movieForm:', this.movieForm.value);
+    
+    if (this.movieForm.valid) {
+
+      this.isFormValid = true;
+      console.log('form data is: ', this.profileForm.value);
+      console.log('companion form is: ', this.companionForm.value);
+      console.log('address data is: ', this.addressForm.value)
+      console.log('movieForm:', this.movieForm.value);
+    }
+
   }
 
   public searchCep() {
