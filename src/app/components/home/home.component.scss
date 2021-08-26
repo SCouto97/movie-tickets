@@ -36,12 +36,16 @@
             column-gap: 16px;
             margin-bottom: 8px;
         }
+        .example-additional-selection {
+            opacity: 0.75;
+            font-size: 0.75em;
+          }
     }
     .seu-ingresso { 
         display: flex;
         flex-direction: column;
-        background: blue;
-        min-width: 300px;
+        background: grey;
+        min-width: 360px;
  
         .text-rodape {
             display: flex;

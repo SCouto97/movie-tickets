@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Movie } from 'src/app/public/models/movie';
 import { CepService } from 'src/app/services/cep.service';
+import { MovieService } from 'src/app/services/movie-service.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +24,8 @@ export class HomeComponent implements OnInit {
     companionEmail: [{ value: '', disabled: true }],
     cep: [''],
     address: [],
-    hasAc: [false]
+    hasAc: [false],
+    movie: ['']
   });
 
   addressForm = this.fb.group({
@@ -35,21 +38,24 @@ export class HomeComponent implements OnInit {
     gia: [''],
     ddd: [''],
     siafi: [''],
-    cep: ['']
+    cep: [''],
+    numero: ['']
   })
 
-  constructor(private fb: FormBuilder, private cepService: CepService) { }
+  movieForm = this.fb.group({
+    title: ['']
+  })
+
+  constructor(private fb: FormBuilder, private cepService: CepService, private movieService: MovieService) { }
+
+  public movieList: Movie[] = [];
+  public loadingMovieList: boolean;
 
   ngOnInit() {
     this.onChanges();
   }
 
   public onChanges(): void {
-    // this.profileForm.valueChanges
-    //   .subscribe(res => {
-    //     console.log('profileForm: ', res)
-    //   });
-
     this.addressForm.valueChanges
       .subscribe(res => {
         console.log('overloads: ', res)
@@ -65,8 +71,7 @@ export class HomeComponent implements OnInit {
 
     this.profileForm.patchValue({
       address: this.addressForm.value,
-    })
-
+    });
   }
 
   public searchCep() {
@@ -80,10 +85,26 @@ export class HomeComponent implements OnInit {
           logradouro: res.logradouro,
           bairro: res.bairro,
           localidade: res.localidade,
-
-
+          uf: res.uf,
         });
       });
   }
 
+  public getMovieList(): void {
+    this.loadingMovieList = true;
+    this.movieService.getMovieDBResponse()
+      .subscribe(
+        movieDBResponse => {
+          movieDBResponse.results.forEach(movie => {
+            this.movieList.push(movie);
+          });
+          this.loadingMovieList = false;
+        },
+        error => {
+          console.log(error);
+          this.loadingMovieList = false;
+        }
+      );
+    console.log(this.movieList);
+  }
 }

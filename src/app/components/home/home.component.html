@@ -1,6 +1,6 @@
 <section>
   <div class="title">
-    <h1>Formulário</h1>
+    <h1>Reserva de Ingressos</h1>
   </div>
   <div class="content-form">
     <!-- <mat-card> -->
@@ -97,6 +97,11 @@
                 <input formControlName="cep" matInput="" placeholder="CEP" (keyup.enter)="searchCep()">
               </mat-form-field>
             </div>
+            <div class="item-column">
+              <mat-form-field>
+                <input formControlName="uf" matInput="" placeholder="Estado" (keyup.enter)="searchCep()">
+              </mat-form-field>
+            </div>
           </div>
 
           <div class="two-column">
@@ -122,7 +127,7 @@
           <div class="two-column">
             <div class="item-column">
               <mat-form-field>
-                <input formControlName="complemento" matInput="" placeholder="Número">
+                <input formControlName="numero" matInput="" placeholder="Número">
               </mat-form-field>
             </div>
 
@@ -135,6 +140,20 @@
           </div>
         </form>
 
+        <br>
+        
+        <span>Escolha o filme:</span>
+
+        <br>
+ 
+        <form [formGroup]="movieForm">
+          <mat-form-field  appearance="fill">
+            <mat-label>Filmes</mat-label>
+            <mat-select formControlName="title" matInput="" (click)="getMovieList()">
+              <mat-option *ngFor="let movie of movieList" [value]="movie.title"> {{ movie.title }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
       </div>
 
       <mat-card-actions>
