@@ -38,18 +38,18 @@
               </mat-form-field>
             </div>
           </div>
-          
+
           <div class="one-column">
             <mat-form-field>
               <input formControlName="email" matInput="" placeholder="Email">
             </mat-form-field>
           </div>
-          
+
           <div class="companion-checkbox">
-            <mat-checkbox formControlName="hasAc" (click)="activeFields()">Adicionar acompanhante</mat-checkbox>
+            <mat-checkbox formControlName="hasAc">Adicionar acompanhante</mat-checkbox>
           </div>
         </form>
-          
+
         <form [formGroup]="companionForm" class="form-container">
           <div class="companion-section" *ngIf="profileForm.value.hasAc">
             <div class="two-column">
@@ -145,24 +145,20 @@
 
         <br>
 
-        <span>Escolha o filme:</span>
+        <span>Pré-vendas disponíveis:</span>
 
         <br>
 
         <form [formGroup]="movieForm">
           <mat-form-field appearance="fill">
-            <mat-label>Filmes</mat-label>
-            <mat-select formControlName="title" matInput="" [disabled]="loadingMovieList">
-              <mat-option *ngFor="let movie of movieList" 
-                [value]="movie.title"> {{ movie.title }}</mat-option>
+            <mat-label>Escolha um filme</mat-label>
+            <mat-select formControlName="info" matInput="" [disabled]="loadingMovieList">
+              <mat-option *ngFor="let movie of movieList"
+              [value]="movie"> {{ movie.title }} </mat-option>
             </mat-select>
           </mat-form-field>
         </form>
       </div>
-
-      <mat-card-actions>
-        <button (click)="onSubmit()" mat-raised-button color="primary">Save</button>
-      </mat-card-actions>
     </div>
 
     <div class="seu-ingresso">
@@ -170,12 +166,18 @@
       <div class="section-inputs">
 
         <div class="whatever">
-          <div class="item-grid square">
-            LOL
-          </div>
-
           <div class="item-grid">
-            LOL2222
+            <img [src]="imageToShow"
+              *ngIf="!loadingMoviePoster" class="movie-poster">
+            <div class="empty-movie-poster" *ngIf="loadingMoviePoster"></div>
+          </div>
+          <div class="item-grid">
+            <div class="selected-movie" *ngIf="!loadingMoviePoster">
+              Ingresso para o filme {{ selectedMovieTitle }}
+            </div>
+            <div class="ticket-price">
+              preco: 20 real
+            </div>
           </div>
         </div>
 
@@ -194,6 +196,9 @@
           <span>$$$$$$$</span>
         </div>
       </div>
+      <mat-card-actions>
+        <button (click)="onSubmit()" [disabled]="validateRequiredFields()" mat-raised-button color="primary">Comprar</button>
+      </mat-card-actions>
     </div>
     <!-- </mat-card> -->
   </div>

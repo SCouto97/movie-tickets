@@ -8,7 +8,7 @@ import { Movie } from '../public/models/movie';
 @Injectable()
 export class MovieService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   private UrlServiceV1: string = environment.movieDB.apiBaseUrl
     + environment.movieDB.apiKeyArg
@@ -16,9 +16,10 @@ export class MovieService {
     + environment.movieDB.pageArg;
 
   private movieList: Movie[];
+  private imageToShow: any;
 
   public getMovieDBResponse(): Observable<MovieDBResponse> {
-    return this.http
+    return this.httpClient
       .get<MovieDBResponse>(this.UrlServiceV1);
   }
 
@@ -26,6 +27,22 @@ export class MovieService {
   public getUpcomingMovies(): Movie[] {
     console.log(this.movieList);
     return this.movieList;
+  }
+
+  public getImage(imageUrl: string): Observable<Blob> {
+    return this.httpClient.get(imageUrl, { responseType: 'blob' });
+  }
+
+  public getMoviePoster(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+      console.log('url: ', image)
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
 }

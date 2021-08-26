@@ -4,7 +4,7 @@
     justify-content: center;
  
     .cabecalho {
-        background: #e6e0e0;
+        background: #e2dfdf;
         color: #1a1a1a;
         font-weight: 500;
         font-size: 16px;
@@ -44,8 +44,8 @@
     .seu-ingresso { 
         display: flex;
         flex-direction: column;
-        background: grey;
-        min-width: 360px;
+        background: #e2dfdf;
+        min-width: 600px;
  
         .text-rodape {
             display: flex;
@@ -70,12 +70,19 @@
                 grid: 1;
             }
  
-            .square {
-                height: 100px;
-                width: 100px;
-                background: rgb(202, 196, 196);
+            .movie-poster {
+                height: 400px;
+                width: 200px;
+                grid:1;
+
+                .empty-movie-poster {
+                    height: 450px;
+                    width: 300px;
+                    grid:1;
+                    background: #411b1b;
+                }
+     
             }
- 
         }
     }
 }

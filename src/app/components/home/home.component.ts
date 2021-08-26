@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Movie } from 'src/app/public/models/movie';
 import { CepService } from 'src/app/services/cep.service';
 import { MovieService } from 'src/app/services/movie-service.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
     email: ['', Validators.required],
     cep: ['', Validators.required],
     address: [],
-    hasAc: [ false ],
+    hasAc: [false],
     movie: ['']
   });
 
@@ -42,15 +43,18 @@ export class HomeComponent implements OnInit {
   })
 
   movieForm = this.fb.group({
-    title: [''],
-
+    info: [''],
   })
 
   constructor(private fb: FormBuilder, private cepService: CepService, private movieService: MovieService) { }
 
   public movieList: Movie[] = [];
   public loadingMovieList: boolean;
-
+  public loadingMoviePoster: boolean;
+  public imageUrl: string;
+  public imageToShow: any;
+  public selectedMovieTitle: string;
+  
   ngOnInit() {
     this.onChanges();
     this.getMovieList();
@@ -61,15 +65,19 @@ export class HomeComponent implements OnInit {
       .subscribe(res => {
         console.log('overloads: ', res);
       });
+
+    this.movieForm.valueChanges
+      .subscribe(res => {
+        this.selectedMovieTitle = res.info.title;
+        this.imageUrl = environment.movieDB.apiImageUrl + res.info.poster_path;
+        this.getMoviePoster();
+      });
   }
 
   public onSubmit() {
-    console.log('form data is ', this.profileForm.value);
-
-    this.profileForm.patchValue({
-      address: this.addressForm.value,
-    });
-
+    console.log('form data is: ', this.profileForm.value);
+    console.log('companion form is: ', this.companionForm.value);
+    console.log('address data is: ', this.addressForm.value)
     console.log('movieForm:', this.movieForm.value);
   }
 
@@ -102,13 +110,37 @@ export class HomeComponent implements OnInit {
           this.loadingMovieList = false;
         }
       );
-    console.log(this.movieList);
   }
 
-  public activeFields() {
-    if (this.profileForm.value.hasAc) {
-      // this.profileForm.controls.companionFirstName.enable();
+  public createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.imageToShow = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
     }
+ }
+
+  public getMoviePoster(): void {
+    this.loadingMoviePoster = true;
+    this.movieService.getImage(this.imageUrl).subscribe(data => {
+      this.createImageFromBlob(data);
+      this.loadingMoviePoster = false;
+    }, error => {
+      this.loadingMoviePoster = false;
+      console.log(error);
+    });
   }
 
+  public updateMovieChoice(): void {
+    this.movieForm.patchValue({
+      title: this.movieForm.value.title
+    });
+  }
+
+  public validateRequiredFields(): boolean {
+    return true;
+  }
 }
