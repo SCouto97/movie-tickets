@@ -1,6 +1,6 @@
-<section>
+<section class="movie-tickets-form">
   <div class="title">
-    <h1>Reserva de Ingressos</h1>
+    <h1 class="title">Pré-venda de Ingressos</h1>
   </div>
   <div class="content-form">
     <div class="personal-data">
@@ -45,17 +45,20 @@
       <div class="header">Seu Ingresso</div>
       <div class="section-inputs">
 
-        <div class="whatever">
+        <div class="movie-section">
           <div class="item-grid">
             <img [src]="imageToShow" *ngIf="!loadingMoviePoster" class="movie-poster">
-            <div class="empty-movie-poster" *ngIf="loadingMoviePoster"></div>
           </div>
           <div class="item-grid">
             <div class="selected-movie" *ngIf="!loadingMoviePoster">
-              Ingresso para o filme {{ selectedMovieTitle }}
+              Ingresso
+            </div>
+            <div class="selected-movie name" *ngIf="!loadingMoviePoster">
+              FILME: {{ selectedMovieTitle }}
             </div>
             <div class="ticket-price">
-              Preço do Ingresso: R$ {{ ticketPrice }}
+              <span>Preço:</span>
+              <span>R$ {{ ticketPrice | number : '.2-2'}}</span>            
             </div>
           </div>
         </div>
@@ -64,16 +67,16 @@
 
         <div class="footnote-text">
           <span>Total dos ingressos</span>
-          <span>{{ totalPrice }}</span>
+          <span>R$ {{ totalPrice | number : '.2-2'}}</span>
         </div>
         <div class="footnote-text"
           [style.opacity]="shippingDisabled ? 0.6 : 1">
           <span>Frete</span>
-          <span>{{ shippingPrice }}</span>
+          <span>R$ {{ shippingPrice | number : '.2-2'}}</span>
         </div>
         <div class="footnote-text total-price">
           <span>TOTAL</span>
-          <span>{{ totalPrice }}</span>
+          <span class="price">R$ {{ totalPrice | number : '.2-2'}}</span>
         </div>
 
         <br>
@@ -82,7 +85,6 @@
         <div class="submit-button">
           <mat-card-actions>
             <button (click)="onSubmit()" [disabled]="!isFormValid" mat-raised-button color="primary">Comprar</button>
-            <!-- <button (click)="redi()"></button> -->
           </mat-card-actions>
         </div>
       </div>

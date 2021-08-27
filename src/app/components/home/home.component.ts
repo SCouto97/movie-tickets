@@ -69,6 +69,8 @@ export class HomeComponent implements OnInit {
     if (this.movieForm.valid) {
       this.isFormValid = true;
       console.log('pressed submit');
+      console.log('payload: ', payload);
+      
       this.reservaService.postReserva(payload)
         .subscribe()
     }
@@ -76,7 +78,7 @@ export class HomeComponent implements OnInit {
 
   public getRequestPayload(): any {
     let payload = {
-      clientInfo: this.buyerForm.value.profileForm.value,
+      clientInfo: this.buyerForm.profileForm.value,
       addressInfo: this.addressForm.value,
       price: this.totalPrice
     };

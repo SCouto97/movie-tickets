@@ -1,96 +1,126 @@
-.content-form {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.movie-tickets-form {
 
-    .header {
-        background: #e2dfdf;
-        color: #1a1a1a;
-        font-weight: 500;
-        font-size: 16px;
-        padding: 8px;
+    .title {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1em;
+        width: 40%;
+        font-weight: 1000;
     }
- 
-    .section-inputs {
-        padding: 16px;
-    }
- 
-    .personal-data {
+
+    .content-form {
         display: flex;
-        flex-direction: column;
-        min-width: 400px;
-        background-color: #f7f3f3;
- 
-        .two-column {
-            display: grid;
-            grid-template-columns: 50% 50%;
-            column-gap: 16px;
-            margin-bottom: 8px;
- 
-            .item-column {
-                grid: 1;
+        flex-direction: row;
+        justify-content: center;
+        border-color: black;
+        border-radius: 1%;
+        
+        .header {
+            background: #e2dfdf;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 1.5em;
+            padding: .5rem;
+        }
+    
+        .section-inputs {
+            padding: 2rem;
+        }
+    
+        .personal-data {
+            display: flex;
+            flex-direction: column;
+            min-width: 400px;
+            background-color: #f7f3f3;
+            box-shadow: 5px 5px 5px grey;
+    
+            .two-column {
+                display: grid;
+                grid-template-columns: 50% 50%;
+                column-gap: 16px;
+                margin-bottom: 8px;
+    
+                .item-column {
+                    grid: 1;
+                }
+            }
+            .one-column {
+                display: grid;
+                column-gap: 16px;
+                margin-bottom: 8px;
+            }
+            .example-additional-selection {
+                opacity: 0.75;
+                font-size: 0.75em;
             }
         }
-        .one-column {
-            display: grid;
-            column-gap: 16px;
-            margin-bottom: 8px;
-        }
-        .example-additional-selection {
-            opacity: 0.75;
-            font-size: 0.75em;
-          }
-    }
-    .your-tickets { 
-        display: flex;
-        flex-direction: column;
-        background: #e2dfdf;
-        min-width: 800px;
- 
-        .footnote-text {
+        .your-tickets { 
             display: flex;
-            justify-content: space-between;
-        
+            flex-direction: column;
+            background: #e2dfdf;
+            min-width: 800px;
+            box-shadow: 5px 5px 5px grey;
+    
+            .footnote-text {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 0.5em;
+            
+                .grayout {
+                    opacity: 0.6; 
+                    filter: alpha(opacity = 60);
+                }
+            }
+            
             .total-price { 
                 display: flex;
-                margin: 12px;
+                font-weight: 1000;
+                font-size: 1.2em;
+                margin-top: 2em;
+                
+                .price {
+                    color: rgb(37, 37, 231);
+                }
             }
-            .grayout {
-                opacity: 0.6; 
-                filter: alpha(opacity = 60);
-            }
-        }
- 
-        .line {
-            margin: 8px;
-            border-bottom: 1px solid black;
-        }
- 
-        .whatever {
-            display: grid;
-            grid-template-columns: auto auto;
- 
-            .item-grid {
-                grid: 1;
-            }
- 
-            .movie-poster {
-                height: 450px;
-                width: 300px;
-                grid:1;
 
-                .empty-movie-poster {
+            .line {
+                margin: 8px;
+                border-bottom: 1px solid black;
+            }
+    
+            .movie-section {
+                display: grid;
+                grid-template-columns: auto auto;
+                font-size: 1.1em;
+    
+                .item-grid {
+                    grid: 1;
+
+                    .selected-movie {
+                        justify-content: left;
+                        margin-top: .5em;
+                    }
+                }
+    
+                .movie-poster {
                     height: 450px;
                     width: 300px;
                     grid:1;
-                    background: #411b1b;
+                }
+
+                .ticket-price {
+                    margin-top: 10em; 
+                    display: flex;
+                    justify-content: space-between;
+
                 }
             }
-        }
-        .submit-button {
-            display: flex;
-            flex-direction: row;
-            justify-content: right;
+            .submit-button {
+                display: flex;
+                flex-direction: row;
+                justify-content: right;
+            }
         }
     }
 }
