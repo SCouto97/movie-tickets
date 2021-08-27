@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   public submitPayload: any;
 
-  public ticketPrice = 32;
+  public ticketPrice = 0;
   public shippingPrice = 0.0;
   public totalPrice = 0.0;
   public shippingDisabled = true;
@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
         this.imageUrl = environment.movieDB.apiImageUrl + res.info.poster_path;
         this.movieReleaseDate = new Date(res.info.release_date);
         this.showMovieRelease = true;
+        this.ticketPrice = 32;
         this.getMoviePoster();
         this.validateRequiredFields();
         this.totalPrice = this.ticketPrice;
