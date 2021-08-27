@@ -14,7 +14,7 @@
 
         <br>
 
-        <app-address-form></app-address-form>
+        <app-address-form (changeAdressFormEvent)="receiveFromDataAdressForm($event)"></app-address-form>
 
         <br>
 
@@ -73,6 +73,7 @@
         <div class="submit-button">
           <mat-card-actions>
             <button (click)="onSubmit()" [disabled]="!isFormValid" mat-raised-button color="primary">Comprar</button>
+            <button (click)="redi()"></button>
           </mat-card-actions>
         </div>
       </div>

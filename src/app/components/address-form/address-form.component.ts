@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
 
@@ -8,6 +8,8 @@ import { CepService } from 'src/app/services/cep.service';
   styleUrls: ['./address-form.component.scss']
 })
 export class AddressFormComponent implements OnInit {
+
+  @Output() changeAdressFormEvent = new EventEmitter<any>();
 
   addressForm = this.fb.group({
     cep: ['', Validators.required],
@@ -26,11 +28,21 @@ export class AddressFormComponent implements OnInit {
     this.onChanges();
   }
 
+  public sentDataFormAddress(): void {
+    this.changeAdressFormEvent.emit(this.addressForm.value);
+  }
+
   public onChanges(): void {
     this.addressForm.valueChanges
       .subscribe(res => {
+        this.sentDataFormAddress();
         console.log('overloads: ', res);
       });
+  }
+
+  f() {
+    console.log('@@@: ', this.addressForm.invalid);
+    // return this.addressForm.is;
   }
 
   public searchAddressByCep() {

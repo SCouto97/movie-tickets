@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Movie } from 'src/app/public/models/movie';
 import { MovieService } from 'src/app/services/movie-service.service';
 import { environment } from 'src/environments/environment';
@@ -15,10 +16,12 @@ export class HomeComponent implements OnInit {
     info: [''],
   })
 
-  constructor(private fb: FormBuilder, private movieService: MovieService) { }
+  constructor(private fb: FormBuilder, private movieService: MovieService, private router: Router) { }
 
   public movieList: Movie[] = [];
   public loadingMovieList: boolean;
+  public isValidFormAddress: boolean;
+
   public loadingMoviePoster: boolean;
   public imageUrl: string;
   public imageToShow: any;
@@ -43,14 +46,19 @@ export class HomeComponent implements OnInit {
   public onSubmit() {
 
     if (this.movieForm.valid) {
-
       this.isFormValid = true;
       // console.log('form data is: ', this.profileForm.value);
       // console.log('companion form is: ', this.companionForm.value);
       // console.log('address data is: ', this.addressForm.value)
       console.log('movieForm:', this.movieForm.value);
+      this.router.navigate(['']);
+
     }
 
+  }
+
+  redi() {
+    this.router.navigate(['']);
   }
 
   public getMovieList(): void {
@@ -101,4 +109,10 @@ export class HomeComponent implements OnInit {
   public validateRequiredFields(): boolean {
     return true;
   }
+
+  receiveFromDataAdressForm(data: any) {
+    this.isValidFormAddress = data;
+    console.log('data received in home component from adress form', data)
+  }
+
 }

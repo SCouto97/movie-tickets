@@ -21,6 +21,8 @@ import { MovieService } from './services/movie-service.service';
 import { HomeComponent } from './components/home/home.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { BuyerFormComponent } from './components/buyer-form/buyer-form.component';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -34,6 +36,11 @@ import { BuyerFormComponent } from './components/buyer-form/buyer-form.component
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    MatCheckboxModule,
     MatRadioModule,
     MatCardModule,
     MatFormFieldModule,
@@ -42,13 +49,6 @@ import { BuyerFormComponent } from './components/buyer-form/buyer-form.component
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    FormsModule
-  ],
-  providers: [
-    MovieService
   ],
   bootstrap: [AppComponent]
 })

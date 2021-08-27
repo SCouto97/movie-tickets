@@ -1,11 +1,13 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MovieDBResponse } from '../public/models/movieDBResponse';
 import { Movie } from '../public/models/movie';
+@Injectable({
+  providedIn: 'root'
+})
 
-@Injectable()
 export class MovieService {
 
   constructor(private httpClient: HttpClient) { }
@@ -22,7 +24,6 @@ export class MovieService {
     return this.httpClient
       .get<MovieDBResponse>(this.UrlServiceV1);
   }
-
 
   public getUpcomingMovies(): Movie[] {
     console.log(this.movieList);
