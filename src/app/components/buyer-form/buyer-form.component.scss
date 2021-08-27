@@ -8,3 +8,8 @@
         grid: 1;
     }
 }
+.one-column {
+    display: grid;
+    column-gap: 16px;
+    margin-bottom: 8px;
+}

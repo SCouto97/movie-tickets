@@ -17,14 +17,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 import { MovieService } from './services/movie-service.service';
 import { HomeComponent } from './components/home/home.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { BuyerFormComponent } from './components/buyer-form/buyer-form.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +49,7 @@ import { CommonModule } from '@angular/common';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    NgxMaskModule.forRoot(),
   ],
   bootstrap: [AppComponent]
 })

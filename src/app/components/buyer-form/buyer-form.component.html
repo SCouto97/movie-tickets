@@ -15,7 +15,10 @@
     <div class="two-column">
         <div class="item-column">
             <mat-form-field>
-                <input formControlName="cpf" matInput="" placeholder="CPF">
+                <input formControlName="cpf" 
+                    matInput="" 
+                    placeholder="CPF"
+                    mask="000.000.000-99">
             </mat-form-field>
         </div>
 
@@ -32,6 +35,15 @@
     <div class="one-column">
         <mat-form-field>
             <input formControlName="email" matInput="" placeholder="Email">
+        </mat-form-field>
+    </div>
+
+    <div class="item-column">
+        <mat-form-field>
+            <input formControlName="phone"
+            matInput=""
+            placeholder="Telefone"
+            mask="(00) 0 0000-0000">
         </mat-form-field>
     </div>
 
@@ -58,7 +70,10 @@
         <div class="two-column">
             <div class="item-column">
                 <mat-form-field>
-                    <input formControlName="cpf" matInput="" placeholder="CPF">
+                    <input formControlName="cpf"
+                        matInput="" 
+                        placeholder="CPF"
+                        mask="000.000.000-99">
                 </mat-form-field>
             </div>
 

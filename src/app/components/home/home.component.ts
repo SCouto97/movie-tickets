@@ -1,6 +1,6 @@
 import { NumberFormatStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Movie } from 'src/app/public/models/movie';
 import { MovieService } from 'src/app/services/movie-service.service';
 import { ReservaService } from 'src/app/services/reserva.service';
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   public imageToShow: any;
   public isFormValid = false;
 
-  public addressForm: any;
+  public addressForm: FormGroup;
   public buyerForm: any;
 
   public submitPayload: any;
@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit {
 
   public onSubmit() {
     let payload = this.getRequestPayload();
-    console.log('payload: ', payload);
 
     if (this.movieForm.valid) {
       this.isFormValid = true;
@@ -77,7 +76,7 @@ export class HomeComponent implements OnInit {
 
   public getRequestPayload(): any {
     let payload = {
-      clientInfo: this.buyerForm.profileForm.value,
+      clientInfo: this.buyerForm.value.profileForm.value,
       addressInfo: this.addressForm.value,
       price: this.totalPrice
     };
@@ -140,7 +139,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  public isAddressFormValid(): boolean {
+  public isBuyerFormValid(): boolean {
     if (!this.buyerForm.profileForm.value.hasAc) {
       return this.buyerForm.profileForm.valid;
     } else {
@@ -148,7 +147,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  public isBuyerFormValid(): boolean {
+  public isAddressFormValid(): boolean {
     return this.addressForm.valid;
   }
 
@@ -161,7 +160,6 @@ export class HomeComponent implements OnInit {
   }
 
   public converteData(date: Date): string {
-    console.log('data original: ', date)
     return date.getDate().toString() + "/"
      + (date.getMonth() + 1).toString() + "/" // mês errado se não adicionar 1
     + date.getFullYear().toString();
