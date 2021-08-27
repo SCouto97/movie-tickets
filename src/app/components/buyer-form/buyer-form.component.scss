@@ -1,0 +1,10 @@
+.two-column {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 16px;
+    margin-bottom: 8px;
+
+    .item-column {
+        grid: 1;
+    }
+}

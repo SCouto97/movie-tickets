@@ -11,27 +11,6 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    cpf: ['', Validators.required],
-    birthDate: ['', Validators.required],
-    email: ['', Validators.required],
-    cep: ['', Validators.required],
-    address: [],
-    hasAc: [false],
-    movie: ['']
-  });
-
-  companionForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    cpf: ['', Validators.required],
-    birthDate: ['', Validators.required],
-    email: ['', Validators.required],
-  });
-
-
   movieForm = this.fb.group({
     info: [''],
   })
@@ -66,8 +45,8 @@ export class HomeComponent implements OnInit {
     if (this.movieForm.valid) {
 
       this.isFormValid = true;
-      console.log('form data is: ', this.profileForm.value);
-      console.log('companion form is: ', this.companionForm.value);
+      // console.log('form data is: ', this.profileForm.value);
+      // console.log('companion form is: ', this.companionForm.value);
       // console.log('address data is: ', this.addressForm.value)
       console.log('movieForm:', this.movieForm.value);
     }

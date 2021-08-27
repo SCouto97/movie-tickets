@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MovieService } from './services/movie-service.service';
 import { HomeComponent } from './components/home/home.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
+import { BuyerFormComponent } from './components/buyer-form/buyer-form.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     AppComponent,
     HomeComponent,
     AddressFormComponent,
+    BuyerFormComponent,
   ],
   imports: [
     BrowserModule,

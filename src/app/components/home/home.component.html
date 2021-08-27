@@ -4,94 +4,17 @@
   </div>
   <div class="content-form">
     <div class="personal-data">
-      <div class="header">Dados Pessoais</div>
-
+      <span class="header">Dados Pessoais</span>
       <div class="section-inputs">
-        <form [formGroup]="profileForm" class="form-container">
-          <div class="two-column">
-            <div class="item-column">
-              <mat-form-field>
-                <input formControlName="firstName" matInput="" placeholder="Nome">
-              </mat-form-field>
-            </div>
-
-            <div class="item-column">
-              <mat-form-field>
-                <input formControlName="lastName" matInput="" placeholder="Sobrenome">
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="two-column">
-            <div class="item-column">
-              <mat-form-field>
-                <input formControlName="cpf" matInput="" placeholder="CPF">
-              </mat-form-field>
-            </div>
-
-            <div class="item-column">
-              <mat-form-field>
-                <mat-label>Data de nascimento</mat-label>
-                <input formControlName="birthDate" matInput [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="one-column">
-            <mat-form-field>
-              <input formControlName="email" matInput="" placeholder="Email">
-            </mat-form-field>
-          </div>
-
-          <div class="companion-checkbox">
-            <mat-checkbox formControlName="hasAc">Adicionar acompanhante</mat-checkbox>
-          </div>
-        </form>
-
-        <form [formGroup]="companionForm" class="form-container">
-          <div class="companion-section" *ngIf="profileForm.value.hasAc">
-            <div class="two-column">
-              <div class="item-column">
-                <mat-form-field>
-                  <input formControlName="firstName" matInput="" placeholder="Nome">
-                </mat-form-field>
-              </div>
-
-              <div class="item-column">
-                <mat-form-field>
-                  <input formControlName="lastName" matInput="" placeholder="Sobrenome">
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="two-column">
-              <div class="item-column">
-                <mat-form-field>
-                  <input formControlName="cpf" matInput="" placeholder="CPF">
-                </mat-form-field>
-              </div>
-
-              <div class="item-column">
-                <mat-form-field>
-                  <mat-label>Data de nascimento</mat-label>
-                  <input formControlName="birthDate" matInput [matDatepicker]="picker">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-
-          <br>
-
+        <app-buyer-form></app-buyer-form>
           <div class="dados-entrega">
             Dados da Entrega
           </div>
 
-        </form>
-
         <br>
+
         <app-address-form></app-address-form>
+        
         <br>
 
         <span>Pré-vendas disponíveis:</span>
