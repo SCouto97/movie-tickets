@@ -1,0 +1,51 @@
+<form [formGroup]="addressForm">
+    <div class="two-column">
+      <div class="item-column">
+        <mat-form-field>
+          <input formControlName="cep" matInput="" 
+            placeholder="CEP" 
+            (keyup.enter)="searchAddressByCep()"
+            (keydown.tab)="searchAddressByCep()">
+        </mat-form-field>
+      </div>
+      <div class="item-column">
+        <mat-form-field>
+          <input formControlName="uf" matInput="" placeholder="Estado">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="two-column">
+      <div class="item-column">
+        <mat-form-field>
+          <input formControlName="localidade" matInput="" placeholder="Cidade">
+        </mat-form-field>
+      </div>
+      <div class="item-column">
+        <mat-form-field>
+          <input formControlName="bairro" matInput="" placeholder="Bairro">
+        </mat-form-field>
+      </div>
+
+    </div>
+
+    <div class="one-column">
+      <mat-form-field>
+        <input formControlName="logradouro" matInput="" placeholder="Endereco">
+      </mat-form-field>
+    </div>
+
+    <div class="two-column">
+      <div class="item-column">
+        <mat-form-field>
+          <input formControlName="numero" matInput="" placeholder="Número">
+        </mat-form-field>
+      </div>
+
+      <div class="item-column">
+        <mat-form-field>
+          <input formControlName="complemento" matInput="" placeholder="Complemento">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>

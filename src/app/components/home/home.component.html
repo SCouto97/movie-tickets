@@ -1,0 +1,83 @@
+<section>
+  <div class="title">
+    <h1>Reserva de Ingressos</h1>
+  </div>
+  <div class="content-form">
+    <div class="personal-data">
+      <span class="header">Dados Pessoais</span>
+      <div class="section-inputs">
+
+        <app-buyer-form (changeBuyerFormEvent)="receiveDataFromBuyerForm($event)"></app-buyer-form>
+
+        <div class="dados-entrega">
+          Dados da Entrega
+        </div>
+
+        <br>
+
+        <app-address-form (changeAddressFormEvent)="receiveDataFromAddressForm($event)"></app-address-form>
+
+        <br>
+
+        <span>Pré-vendas disponíveis:</span>
+
+        <br>
+
+        <form [formGroup]="movieForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Escolha um filme</mat-label>
+            <mat-select formControlName="info" matInput="" [disabled]="loadingMovieList">
+              <mat-option *ngFor="let movie of movieList" [value]="movie"> {{ movie.title }} </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="your-tickets">
+      <div class="header">Seu Ingresso</div>
+      <div class="section-inputs">
+
+        <div class="whatever">
+          <div class="item-grid">
+            <img [src]="imageToShow" *ngIf="!loadingMoviePoster" class="movie-poster">
+            <div class="empty-movie-poster" *ngIf="loadingMoviePoster"></div>
+          </div>
+          <div class="item-grid">
+            <div class="selected-movie" *ngIf="!loadingMoviePoster">
+              Ingresso para o filme {{ selectedMovieTitle }}
+            </div>
+            <div class="ticket-price">
+              Preço do Ingresso: R$ 20,00
+            </div>
+          </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="footnote-text">
+          <span>Seu total</span>
+          <span>$$$$$$$</span>
+        </div>
+        <div class="footnote-text">
+          <span>Frete</span>
+          <span>$$$$$$$</span>
+        </div>
+        <div class="total-price footnote-text">
+          <span>TOTAL</span>
+          <span>$$$$$$$</span>
+        </div>
+
+        <br>
+        <br>
+        
+        <div class="submit-button">
+          <mat-card-actions>
+            <button (click)="onSubmit()" [disabled]="!isFormValid" mat-raised-button color="primary">Comprar</button>
+            <!-- <button (click)="redi()"></button> -->
+          </mat-card-actions>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
