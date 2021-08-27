@@ -21,9 +21,9 @@
         <div class="movie-info">
 
           <span>Pré-vendas disponíveis:</span>
-  
+
           <br>
-  
+
           <form [formGroup]="movieForm">
             <mat-form-field appearance="fill">
               <mat-label>Escolha um filme</mat-label>
@@ -47,7 +47,14 @@
 
         <div class="movie-section">
           <div class="item-grid">
-            <img [src]="imageToShow" *ngIf="!loadingMoviePoster" class="movie-poster">
+            <img [src]="imageToShow" alt="Poster Image"
+            class="movie-poster" 
+            *ngIf="!loadingMoviePoster; 
+             else noImageFound">
+            <ng-template #noImageFound>
+              <img src="./assets/not-found.png" alt="Fallbackimage">
+            </ng-template>
+
           </div>
           <div class="item-grid">
             <div class="selected-movie" *ngIf="!loadingMoviePoster">
@@ -58,7 +65,7 @@
             </div>
             <div class="ticket-price">
               <span>Preço:</span>
-              <span>R$ {{ ticketPrice | number : '.2-2'}}</span>            
+              <span>R$ {{ ticketPrice | number : '.2-2'}}</span>
             </div>
           </div>
         </div>
@@ -69,8 +76,7 @@
           <span>Total dos ingressos</span>
           <span>R$ {{ ticketPrice | number : '.2-2'}}</span>
         </div>
-        <div class="footnote-text"
-          [style.opacity]="shippingDisabled ? 0.6 : 1">
+        <div class="footnote-text" [style.opacity]="shippingDisabled ? 0.6 : 1">
           <span>Frete</span>
           <span>R$ {{ shippingPrice | number : '.2-2'}}</span>
         </div>
@@ -81,7 +87,7 @@
 
         <br>
         <br>
-        
+
         <div class="submit-button">
           <mat-card-actions>
             <button (click)="onSubmit()" [disabled]="!isFormValid" mat-raised-button color="primary">Comprar</button>

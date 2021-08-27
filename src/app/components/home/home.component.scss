@@ -21,17 +21,22 @@
             color: #1a1a1a;
             font-weight: 500;
             font-size: 1.5em;
-            padding: .5rem;
+            padding: 0.5rem;
+            padding-left: 1.5rem;
         }
     
         .section-inputs {
-            padding: 2rem;
+            padding: 1.5rem;
+
+            .movie-release {
+                font-size: 1.1em;
+            }
         }
     
         .personal-data {
             display: flex;
             flex-direction: column;
-            min-width: 400px;
+            min-width: 540px;
             background-color: #f7f3f3;
             box-shadow: 5px 5px 5px grey;
     
@@ -59,7 +64,7 @@
             display: flex;
             flex-direction: column;
             background: #e2dfdf;
-            min-width: 800px;
+            min-width: 640px;
             box-shadow: 5px 5px 5px grey;
     
             .footnote-text {
@@ -120,6 +125,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: right;
+                padding-top: 2em;
             }
         }
     }
