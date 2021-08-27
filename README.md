@@ -1,6 +1,6 @@
 # MovieTickets
 
-Projeto criado como uma abordagem para solucionar o [desafio](https://github.com/wizsolucoes/front-testes/blob/master/Case-tecnico-Frot-end-I-e-2.md) da Wiz soluções version . Este projeto utiliza o Angular versão 12.2.2.
+Projeto criado como uma abordagem para solucionar o [desafio](https://github.com/wizsolucoes/front-testes/blob/master/Case-tecnico-Frot-end-I-e-2.md) da Wiz soluções. Este projeto utiliza o Angular versão 12.2.2.
 
 ## Pré requisitos
 
