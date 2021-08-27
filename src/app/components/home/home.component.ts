@@ -18,15 +18,20 @@ export class HomeComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private movieService: MovieService, private router: Router) { }
 
-  public movieList: Movie[] = [];
   public loadingMovieList: boolean;
-  public isValidFormAddress: boolean;
-
   public loadingMoviePoster: boolean;
+
+  public selectedMovieTitle: string;
+  public movieList: Movie[] = [];
+  
   public imageUrl: string;
   public imageToShow: any;
-  public selectedMovieTitle: string;
   public isFormValid = false;
+
+  public addressForm: any;
+  public buyerForm: any;
+
+  public submitPayload: any;
 
   ngOnInit() {
     this.onChanges();
@@ -40,6 +45,7 @@ export class HomeComponent implements OnInit {
         this.selectedMovieTitle = res.info.title;
         this.imageUrl = environment.movieDB.apiImageUrl + res.info.poster_path;
         this.getMoviePoster();
+        this.validateRequiredFields();
       });
   }
 
@@ -47,17 +53,15 @@ export class HomeComponent implements OnInit {
 
     if (this.movieForm.valid) {
       this.isFormValid = true;
-      // console.log('form data is: ', this.profileForm.value);
-      // console.log('companion form is: ', this.companionForm.value);
-      // console.log('address data is: ', this.addressForm.value)
-      console.log('movieForm:', this.movieForm.value);
-      this.router.navigate(['']);
-
+      console.log('pressed submit'); 
+      // tenho que dar um post aqui
+      // redirecionar para /reserva
+      this.router.navigate(['/pimba']);
     }
 
   }
 
-  redi() {
+  public submitForm() {
     this.router.navigate(['']);
   }
 
@@ -106,13 +110,31 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public validateRequiredFields(): boolean {
-    return true;
+  public validateRequiredFields(): void {
+    if (this.buyerForm != undefined && this.addressForm != undefined) {
+      this.isFormValid = this.isAddressFormValid() && this.isBuyerFormValid();
+      // console.log('is form valid: ', this.isFormValid);
+    }
   }
 
-  receiveFromDataAdressForm(data: any) {
-    this.isValidFormAddress = data;
-    console.log('data received in home component from adress form', data)
+  public isAddressFormValid(): boolean {
+    if (!this.buyerForm.profileForm.value.hasAc) {
+      return this.buyerForm.profileForm.valid;
+    } else {
+      return this.buyerForm.profileForm.valid && this.buyerForm.companionForm.valid;;
+    }
+  }
+
+  isBuyerFormValid(): boolean {
+    return this.addressForm.valid;
+  }
+
+  public receiveDataFromAddressForm(data: any) {
+    this.addressForm = data;
+  }
+
+  public receiveDataFromBuyerForm(data: any) {
+    this.buyerForm = data;
   }
 
 }

@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home.component';
+import { RouterModule, Routes } from '@angular/router';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,7 +13,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ FormsModule, ReactiveFormsModule, HttpClientTestingModule, MatFormFieldModule, MatSelectModule, NoopAnimationsModule ],
+      imports: [ FormsModule, ReactiveFormsModule, HttpClientTestingModule, MatFormFieldModule, MatSelectModule, NoopAnimationsModule, RouterModule.forRoot([]) ],
       declarations: [ HomeComponent ]
     })
     .compileComponents();

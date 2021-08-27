@@ -2,12 +2,15 @@
     <div class="two-column">
       <div class="item-column">
         <mat-form-field>
-          <input formControlName="cep" matInput="" placeholder="CEP" (keyup.enter)="searchAddressByCep()">
+          <input formControlName="cep" matInput="" 
+            placeholder="CEP" 
+            (keyup.enter)="searchAddressByCep()"
+            (keydown.tab)="searchAddressByCep()">
         </mat-form-field>
       </div>
       <div class="item-column">
         <mat-form-field>
-          <input formControlName="uf" matInput="" placeholder="Estado" (keyup.enter)="searchAddressByCep()">
+          <input formControlName="uf" matInput="" placeholder="Estado">
         </mat-form-field>
       </div>
     </div>
@@ -44,8 +47,5 @@
           <input formControlName="complemento" matInput="" placeholder="Complemento">
         </mat-form-field>
       </div>
-
-      <h1 (click)="f()">teste</h1>
-
     </div>
   </form>

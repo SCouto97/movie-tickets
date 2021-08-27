@@ -6,7 +6,8 @@
     <div class="personal-data">
       <span class="header">Dados Pessoais</span>
       <div class="section-inputs">
-        <app-buyer-form></app-buyer-form>
+
+        <app-buyer-form (changeBuyerFormEvent)="receiveDataFromBuyerForm($event)"></app-buyer-form>
 
         <div class="dados-entrega">
           Dados da Entrega
@@ -14,7 +15,7 @@
 
         <br>
 
-        <app-address-form (changeAdressFormEvent)="receiveFromDataAdressForm($event)"></app-address-form>
+        <app-address-form (changeAddressFormEvent)="receiveDataFromAddressForm($event)"></app-address-form>
 
         <br>
 
@@ -69,11 +70,11 @@
 
         <br>
         <br>
-
+        
         <div class="submit-button">
           <mat-card-actions>
             <button (click)="onSubmit()" [disabled]="!isFormValid" mat-raised-button color="primary">Comprar</button>
-            <button (click)="redi()"></button>
+            <!-- <button (click)="redi()"></button> -->
           </mat-card-actions>
         </div>
       </div>

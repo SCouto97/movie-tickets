@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -8,16 +8,15 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class BuyerFormComponent implements OnInit {
 
+  @Output() changeBuyerFormEvent = new EventEmitter<any>();
+
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     cpf: ['', Validators.required],
     birthDate: ['', Validators.required],
     email: ['', Validators.required],
-    cep: ['', Validators.required],
-    address: [],
-    hasAc: [false],
-    movie: ['']
+    hasAc: [false]
   });
 
   companionForm = this.fb.group({
@@ -25,12 +24,31 @@ export class BuyerFormComponent implements OnInit {
     lastName: ['', Validators.required],
     cpf: ['', Validators.required],
     birthDate: ['', Validators.required],
-    email: ['', Validators.required],
   });
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.onChanges();
   }
 
+  public onChanges(): void {
+    this.profileForm.valueChanges
+      .subscribe(() => {
+        this.sendBuyerDataFormData();
+      });
+
+    this.companionForm.valueChanges
+      .subscribe(() => {
+        this.sendBuyerDataFormData();
+      });
+  }
+
+  public sendBuyerDataFormData(): void {
+
+    this.changeBuyerFormEvent.emit({
+      profileForm: this.profileForm,
+      companionForm: this.companionForm
+    });
+  }
 }
