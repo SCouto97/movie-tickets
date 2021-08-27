@@ -17,3 +17,12 @@ Utilizar o comando `ng serve` para subir o servidor de desenvolvimento. A aplica
 
 Utilizar o comando `ng test` para executar suítes de teste do Karma.
 
+## Detalhes da implementação
+
+- Ao digitar o CEP, apertar enter ou tab para preenchimento automático. 
+- Escolher o filme ao final de digitar os formulários.
+- Preço do acompanhante não está sendo acrescido dinamicamente.
+
+## Pontos de melhoria
+
+De forma geral, o layout pode ser melhorado (e muito). Por conta da restrição de tempo, buscou-se fazer um layout que fosse simples, porém atendesse aos requisitos. Seria interessante também extrair mais componentes, pois o componente home se encontra inchado no momento, com coisas teoricamente não deveriam ser de sua responsabilidade.
