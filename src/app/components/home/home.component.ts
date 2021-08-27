@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   public selectedMovieTitle: string;
   public movieList: Movie[] = [];
+  public movieReleaseDate: Date;
 
   public imageUrl: string;
   public imageToShow: any;
@@ -34,9 +35,11 @@ export class HomeComponent implements OnInit {
 
   public submitPayload: any;
 
-  public ticketPrice = 20.50;
+  public ticketPrice = 32;
   public shippingPrice = 0.0;
   public totalPrice = 0.0;
+  public shippingDisabled = true;
+  public showMovieRelease = false;
 
   ngOnInit() {
     this.onChanges();
@@ -49,8 +52,14 @@ export class HomeComponent implements OnInit {
       .subscribe(res => {
         this.selectedMovieTitle = res.info.title;
         this.imageUrl = environment.movieDB.apiImageUrl + res.info.poster_path;
+        this.movieReleaseDate = new Date(res.info.release_date);
+        this.showMovieRelease = true;
         this.getMoviePoster();
         this.validateRequiredFields();
+        this.totalPrice = this.ticketPrice;
+        this.shippingDisabled = false;
+        this.shippingPrice = 7.90;
+        this.totalPrice = this.shippingPrice + this.ticketPrice;
       });
   }
 
@@ -91,6 +100,10 @@ export class HomeComponent implements OnInit {
           this.loadingMovieList = false;
         }
       );
+  }
+
+  public getMovieReleaseDate(): Date {
+    return new Date();
   }
 
   public createImageFromBlob(image: Blob) {
@@ -145,6 +158,13 @@ export class HomeComponent implements OnInit {
 
   public receiveDataFromBuyerForm(data: any) {
     this.buyerForm = data;
+  }
+
+  public converteData(date: Date): string {
+    console.log('data original: ', date)
+    return date.getDate().toString() + "/"
+     + (date.getMonth() + 1).toString() + "/" // mês errado se não adicionar 1
+    + date.getFullYear().toString();
   }
 
 }

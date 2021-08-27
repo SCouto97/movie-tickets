@@ -51,9 +51,13 @@
             display: flex;
             justify-content: space-between;
         
-            .total_price { 
+            .total-price { 
                 display: flex;
                 margin: 12px;
+            }
+            .grayout {
+                opacity: 0.6; 
+                filter: alpha(opacity = 60);
             }
         }
  

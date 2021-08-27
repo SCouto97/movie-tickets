@@ -18,19 +18,26 @@
         <app-address-form (changeAddressFormEvent)="receiveDataFromAddressForm($event)"></app-address-form>
 
         <br>
+        <div class="movie-info">
 
-        <span>Pré-vendas disponíveis:</span>
+          <span>Pré-vendas disponíveis:</span>
+  
+          <br>
+  
+          <form [formGroup]="movieForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Escolha um filme</mat-label>
+              <mat-select formControlName="info" matInput="" [disabled]="loadingMovieList">
+                <mat-option *ngFor="let movie of movieList" [value]="movie"> {{ movie.title }} </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </div>
 
-        <br>
+        <div class="movie-release" *ngIf="showMovieRelease">
+          Lançamento do filme: {{ converteData(movieReleaseDate) }}
+        </div>
 
-        <form [formGroup]="movieForm">
-          <mat-form-field appearance="fill">
-            <mat-label>Escolha um filme</mat-label>
-            <mat-select formControlName="info" matInput="" [disabled]="loadingMovieList">
-              <mat-option *ngFor="let movie of movieList" [value]="movie"> {{ movie.title }} </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </form>
       </div>
     </div>
 
@@ -56,16 +63,17 @@
         <div class="line"></div>
 
         <div class="footnote-text">
-          <span>Seu total</span>
+          <span>Total dos ingressos</span>
           <span>{{ totalPrice }}</span>
         </div>
-        <div class="footnote-text">
+        <div class="footnote-text"
+          [style.opacity]="shippingDisabled ? 0.6 : 1">
           <span>Frete</span>
-          <span>$$$$$$$</span>
+          <span>{{ shippingPrice }}</span>
         </div>
-        <div class="total-price footnote-text">
+        <div class="footnote-text total-price">
           <span>TOTAL</span>
-          <span>$$$$$$$</span>
+          <span>{{ totalPrice }}</span>
         </div>
 
         <br>
