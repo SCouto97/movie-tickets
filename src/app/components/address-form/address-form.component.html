@@ -5,7 +5,8 @@
           <input formControlName="cep" matInput="" 
             placeholder="CEP" 
             (keyup.enter)="searchAddressByCep()"
-            (keydown.tab)="searchAddressByCep()">
+            (keydown.tab)="searchAddressByCep()"
+            mask="00000-000">
         </mat-form-field>
       </div>
       <div class="item-column">

@@ -1,5 +1,6 @@
+import { NumberFormatStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Movie } from 'src/app/public/models/movie';
 import { MovieService } from 'src/app/services/movie-service.service';
 import { ReservaService } from 'src/app/services/reserva.service';
@@ -23,15 +24,22 @@ export class HomeComponent implements OnInit {
 
   public selectedMovieTitle: string;
   public movieList: Movie[] = [];
+  public movieReleaseDate: Date;
 
   public imageUrl: string;
   public imageToShow: any;
   public isFormValid = false;
 
-  public addressForm: any;
+  public addressForm: FormGroup;
   public buyerForm: any;
 
   public submitPayload: any;
+
+  public ticketPrice = 32;
+  public shippingPrice = 0.0;
+  public totalPrice = 0.0;
+  public shippingDisabled = true;
+  public showMovieRelease = false;
 
   ngOnInit() {
     this.onChanges();
@@ -44,25 +52,38 @@ export class HomeComponent implements OnInit {
       .subscribe(res => {
         this.selectedMovieTitle = res.info.title;
         this.imageUrl = environment.movieDB.apiImageUrl + res.info.poster_path;
+        this.movieReleaseDate = new Date(res.info.release_date);
+        this.showMovieRelease = true;
         this.getMoviePoster();
         this.validateRequiredFields();
+        this.totalPrice = this.ticketPrice;
+        this.shippingDisabled = false;
+        this.shippingPrice = 7.90;
+        this.totalPrice = this.shippingPrice + this.ticketPrice;
       });
   }
 
   public onSubmit() {
-    let payload = { };
+    let payload = this.getRequestPayload();
 
     if (this.movieForm.valid) {
       this.isFormValid = true;
       console.log('pressed submit');
+      console.log('payload: ', payload);
+      
       this.reservaService.postReserva(payload)
-        .subscribe(
-          () => {
-            console.log("post successful");
-          }
-        )
+        .subscribe()
     }
+  }
 
+  public getRequestPayload(): any {
+    let payload = {
+      clientInfo: this.buyerForm.profileForm.value,
+      addressInfo: this.addressForm.value,
+      price: this.totalPrice
+    };
+
+    return payload;
   }
 
   public getMovieList(): void {
@@ -80,6 +101,10 @@ export class HomeComponent implements OnInit {
           this.loadingMovieList = false;
         }
       );
+  }
+
+  public getMovieReleaseDate(): Date {
+    return new Date();
   }
 
   public createImageFromBlob(image: Blob) {
@@ -113,11 +138,10 @@ export class HomeComponent implements OnInit {
   public validateRequiredFields(): void {
     if (this.buyerForm != undefined && this.addressForm != undefined) {
       this.isFormValid = this.isAddressFormValid() && this.isBuyerFormValid();
-      // console.log('is form valid: ', this.isFormValid);
     }
   }
 
-  public isAddressFormValid(): boolean {
+  public isBuyerFormValid(): boolean {
     if (!this.buyerForm.profileForm.value.hasAc) {
       return this.buyerForm.profileForm.valid;
     } else {
@@ -125,7 +149,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  isBuyerFormValid(): boolean {
+  public isAddressFormValid(): boolean {
     return this.addressForm.valid;
   }
 
@@ -135,6 +159,12 @@ export class HomeComponent implements OnInit {
 
   public receiveDataFromBuyerForm(data: any) {
     this.buyerForm = data;
+  }
+
+  public converteData(date: Date): string {
+    return date.getDate().toString() + "/"
+     + (date.getMonth() + 1).toString() + "/" // mês errado se não adicionar 1
+    + date.getFullYear().toString();
   }
 
 }

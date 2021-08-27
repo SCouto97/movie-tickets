@@ -12,3 +12,8 @@ Utilizar o comando `npm install` para instalar as dependências do projeto.
 ## Execução do programa
 
 Utilizar o comando `ng serve` para subir o servidor de desenvolvimento. A aplicação se encontrará em `http://localhost:4200/`.
+
+## Testes
+
+Utilizar o comando `ng test` para executar suítes de teste do Karma.
+

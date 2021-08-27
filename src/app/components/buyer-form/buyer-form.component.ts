@@ -16,6 +16,7 @@ export class BuyerFormComponent implements OnInit {
     cpf: ['', Validators.required],
     birthDate: ['', Validators.required],
     email: ['', Validators.required],
+    phone: ['', Validators.required],
     hasAc: [false]
   });
 
@@ -45,7 +46,6 @@ export class BuyerFormComponent implements OnInit {
   }
 
   public sendBuyerDataFormData(): void {
-
     this.changeBuyerFormEvent.emit({
       profileForm: this.profileForm,
       companionForm: this.companionForm
