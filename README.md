@@ -25,4 +25,4 @@ Utilizar o comando `ng test` para executar suítes de teste do Karma.
 
 ## Pontos de melhoria
 
-De forma geral, o layout pode ser melhorado. Por conta da restrição de tempo, buscou-se fazer um layout que fosse simples, porém atendesse aos requisitos. Seria interessante também extrair mais componentes, pois o componente home se encontra inchado no momento, com coisas teoricamente não deveriam ser de sua responsabilidade. E mais testes! Testar sempre é necessário.
+De forma geral, o layout pode ser melhorado. Por conta da restrição de tempo, buscou-se fazer um layout que fosse simples, porém que atendesse aos requisitos. Seria interessante também extrair mais componentes, pois o componente home se encontra inchado no momento, com coisas teoricamente não deveriam ser de sua responsabilidade. E mais testes! Testar sempre é necessário.
