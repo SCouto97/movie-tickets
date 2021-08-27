@@ -1,3 +1,4 @@
+import { NumberFormatStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Movie } from 'src/app/public/models/movie';
@@ -33,6 +34,10 @@ export class HomeComponent implements OnInit {
 
   public submitPayload: any;
 
+  public ticketPrice = 20.50;
+  public shippingPrice = 0.0;
+  public totalPrice = 0.0;
+
   ngOnInit() {
     this.onChanges();
     this.getMovieList();
@@ -50,19 +55,25 @@ export class HomeComponent implements OnInit {
   }
 
   public onSubmit() {
-    let payload = { };
+    let payload = this.getRequestPayload();
+    console.log('payload: ', payload);
 
     if (this.movieForm.valid) {
       this.isFormValid = true;
       console.log('pressed submit');
       this.reservaService.postReserva(payload)
-        .subscribe(
-          () => {
-            console.log("post successful");
-          }
-        )
+        .subscribe()
     }
+  }
 
+  public getRequestPayload(): any {
+    let payload = {
+      clientInfo: this.buyerForm.profileForm.value,
+      addressInfo: this.addressForm.value,
+      price: this.totalPrice
+    };
+
+    return payload;
   }
 
   public getMovieList(): void {
@@ -113,7 +124,6 @@ export class HomeComponent implements OnInit {
   public validateRequiredFields(): void {
     if (this.buyerForm != undefined && this.addressForm != undefined) {
       this.isFormValid = this.isAddressFormValid() && this.isBuyerFormValid();
-      // console.log('is form valid: ', this.isFormValid);
     }
   }
 
@@ -125,7 +135,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  isBuyerFormValid(): boolean {
+  public isBuyerFormValid(): boolean {
     return this.addressForm.valid;
   }
 

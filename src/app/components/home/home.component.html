@@ -48,7 +48,7 @@
               Ingresso para o filme {{ selectedMovieTitle }}
             </div>
             <div class="ticket-price">
-              Preço do Ingresso: R$ 20,00
+              Preço do Ingresso: R$ {{ ticketPrice }}
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
 
         <div class="footnote-text">
           <span>Seu total</span>
-          <span>$$$$$$$</span>
+          <span>{{ totalPrice }}</span>
         </div>
         <div class="footnote-text">
           <span>Frete</span>
