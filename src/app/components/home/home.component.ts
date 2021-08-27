@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 import { Movie } from 'src/app/public/models/movie';
 import { MovieService } from 'src/app/services/movie-service.service';
+import { ReservaService } from 'src/app/services/reserva.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,14 +16,14 @@ export class HomeComponent implements OnInit {
     info: [''],
   })
 
-  constructor(private fb: FormBuilder, private movieService: MovieService, private router: Router) { }
+  constructor(private fb: FormBuilder, private movieService: MovieService, private reservaService: ReservaService) { }
 
   public loadingMovieList: boolean;
   public loadingMoviePoster: boolean;
 
   public selectedMovieTitle: string;
   public movieList: Movie[] = [];
-  
+
   public imageUrl: string;
   public imageToShow: any;
   public isFormValid = false;
@@ -50,19 +50,19 @@ export class HomeComponent implements OnInit {
   }
 
   public onSubmit() {
+    let payload = { };
 
     if (this.movieForm.valid) {
       this.isFormValid = true;
-      console.log('pressed submit'); 
-      // tenho que dar um post aqui
-      // redirecionar para /reserva
-      this.router.navigate(['/pimba']);
+      console.log('pressed submit');
+      this.reservaService.postReserva(payload)
+        .subscribe(
+          () => {
+            console.log("post successful");
+          }
+        )
     }
 
-  }
-
-  public submitForm() {
-    this.router.navigate(['']);
   }
 
   public getMovieList(): void {

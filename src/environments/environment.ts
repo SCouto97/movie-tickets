@@ -16,6 +16,9 @@ export const environment = {
   viaCep: {
     apiBaseUrl: "https://viacep.com.br/ws/",
     apiSuffix: "/json/"
+  },
+  reserva: {
+    authHash: "#ASDFGW#ERWQERTRYT#%$%$@#$%==",
   }
 };
 
